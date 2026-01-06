@@ -1,65 +1,79 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import NeuralNetwork from '@/components/NeuralNetwork';
-import AIVisualization from '@/components/AIVisualization';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
+
 const HeroSection: React.FC = () => {
-  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  const scrollToContact = () => {
+    const element = document.getElementById('kontakt');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 mesh-gradient" />
       <NeuralNetwork />
       
       <div className="container relative z-10 px-6 py-24">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Text content */}
-          <div className="text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm mb-8 opacity-0 animate-fade-in" style={{
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Tagline badges */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 opacity-0 animate-fade-in" style={{
             animationDelay: '100ms',
             animationFillMode: 'forwards'
-          }}>The most advanced AI Personal Memory Assistant<span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              Personal memory assistant
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 opacity-0 animate-fade-in-up" style={{
-            animationDelay: '200ms',
-            animationFillMode: 'forwards'
           }}>
-              Remember every person like your{' '}
-              <span className="text-gradient">best client.</span>
-            </h1>
-            
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-10 opacity-0 animate-fade-in-up" style={{
-            animationDelay: '400ms',
-            animationFillMode: 'forwards'
-          }}>CoLinked turns scattered notes and recent interactions into a living brief for every contact. 
-Never ask "what did he tell me" again.</p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 opacity-0 animate-fade-in-up" style={{
-            animationDelay: '600ms',
-            animationFillMode: 'forwards'
-          }}>
-              <Button variant="hero" size="lg" className="group">
-                Get early access
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button variant="heroOutline" size="lg">
-                See how it works
-              </Button>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              Exzellenz in Immobilien. Intelligenz in Prozessen.
             </div>
           </div>
           
-          {/* Right: AI Visualization */}
-          <div className="hidden lg:block opacity-0 animate-scale-in" style={{
-          animationDelay: '400ms',
-          animationFillMode: 'forwards'
-        }}>
-            <AIVisualization />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/50 border border-border/50 text-muted-foreground text-sm mb-8 opacity-0 animate-fade-in" style={{
+            animationDelay: '200ms',
+            animationFillMode: 'forwards'
+          }}>
+            Die Brücke zwischen Tradition und Tech.
+          </div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 opacity-0 animate-fade-in-up" style={{
+            animationDelay: '300ms',
+            animationFillMode: 'forwards'
+          }}>
+            Wohnimmobilien vermarkten.{' '}
+            <span className="text-gradient">Geschäfte transformieren.</span>
+          </h1>
+          
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 opacity-0 animate-fade-in-up" style={{
+            animationDelay: '500ms',
+            animationFillMode: 'forwards'
+          }}>
+            Neben der professionellen Vermarktung von Wohnimmobilien bieten wir Digitalisierungs- und Beratungsdienstleistungen für Bestandshalter und Hausverwaltungen an.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up" style={{
+            animationDelay: '700ms',
+            animationFillMode: 'forwards'
+          }}>
+            <Button variant="hero" size="lg" className="group" onClick={scrollToContact}>
+              Jetzt Projekt besprechen
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+            <Button variant="heroOutline" size="lg" asChild>
+              <a href="mailto:kontakt@bellcreek.de">
+                <Mail className="w-4 h-4 mr-2" />
+                Mehr erfahren
+              </a>
+            </Button>
           </div>
         </div>
       </div>
       
       {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;

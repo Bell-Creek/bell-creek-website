@@ -1,14 +1,9 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/sections/HeroSection';
-import FeaturesSection from '@/components/sections/FeaturesSection';
-import UseCasesSection from '@/components/sections/UseCasesSection';
-import VoiceInputSection from '@/components/sections/VoiceInputSection';
-import HowItWorksSection from '@/components/sections/HowItWorksSection';
-import QuickBriefSection from '@/components/sections/QuickBriefSection';
-import ChatDemoSection from '@/components/sections/ChatDemoSection';
-import TestimonialSection from '@/components/sections/TestimonialSection';
-import CTASection from '@/components/sections/CTASection';
+import ServicesSection from '@/components/sections/ServicesSection';
+import WhyUsSection from '@/components/sections/WhyUsSection';
+import ContactSection from '@/components/sections/ContactSection';
 import Footer from '@/components/sections/Footer';
 
 const Index: React.FC = () => {
@@ -16,14 +11,9 @@ const Index: React.FC = () => {
     <main className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
-      <FeaturesSection />
-      <VoiceInputSection />
-      <UseCasesSection />
-      <HowItWorksSection />
-      <QuickBriefSection />
-      <ChatDemoSection />
-      <TestimonialSection />
-      <CTASection />
+      <ServicesSection />
+      <WhyUsSection />
+      <ContactSection />
       <Footer />
     </main>
   );
