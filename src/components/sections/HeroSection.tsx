@@ -53,12 +53,7 @@ const HeroSection: React.FC = () => {
               Jetzt Projekt besprechen
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button variant="heroOutline" size="lg" asChild>
-              <a href="mailto:kontakt@bellcreek.de">
-                <Mail className="w-4 h-4 mr-2" />
-                Mehr erfahren
-              </a>
-            </Button>
+
           </div>
         </div>
       </div>

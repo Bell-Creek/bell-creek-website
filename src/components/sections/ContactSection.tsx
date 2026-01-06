@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowRight, Clock } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
@@ -15,6 +15,12 @@ const contactSchema = z.object({
   interesse: z.string().min(1, 'Bitte wählen Sie ein Interesse'),
   nachricht: z.string().trim().max(2000, 'Nachricht ist zu lang').optional(),
 });
+
+// helper for Netlify forms
+const encode = (data: Record<string, string>) =>
+  Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +49,7 @@ const ContactSection: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrors({});
 
@@ -61,21 +67,16 @@ const ContactSection: React.FC = () => {
 
     setIsLoading(true);
     try {
-      // Submit to Netlify Forms
-      const encode = (data: Record<string, string>) => {
-        return Object.keys(data)
-          .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-          .join('&');
-      };
-
-      const netlifyFormData = {
-        'form-name': 'contact',
+      // build Netlify-compatible payload
+      const netlifyFormData: Record<string, string> = {
+        'form-name': 'contact',          // must match the hidden form name
         name: formData.name,
         email: formData.email,
-        ...(formData.telefon && { telefon: formData.telefon }),
-        ...(formData.unternehmen && { unternehmen: formData.unternehmen }),
         interesse: formData.interesse,
-        ...(formData.nachricht && { nachricht: formData.nachricht }),
+        telefon: formData.telefon || '',
+        unternehmen: formData.unternehmen || '',
+        nachricht: formData.nachricht || '',
+        'bot-field': '',                 // honeypot, stays empty for real users
       };
 
       const response = await fetch('/', {
@@ -110,17 +111,6 @@ const ContactSection: React.FC = () => {
 
   return (
     <section id="kontakt" className="relative py-24 overflow-hidden">
-      {/* Hidden form for Netlify Forms detection during build */}
-      <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-        <input type="hidden" name="bot-field" />
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <input type="text" name="telefon" />
-        <input type="text" name="unternehmen" />
-        <input type="text" name="interesse" />
-        <textarea name="nachricht"></textarea>
-      </form>
-
       {/* Background effects */}
       <div className="absolute inset-0 mesh-gradient opacity-50" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[120px]" />
@@ -134,9 +124,13 @@ const ContactSection: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
               Jetzt Ihr <span className="text-gradient">Projekt</span> besprechen
             </h2>
-                      </div>
-          
-          <form onSubmit={handleSubmit} className="space-y-6">
+          </div>
+
+          <form
+            name="contact"                 // matches Netlify form name
+            onSubmit={handleSubmit}
+            className="space-y-6"
+          >
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <Input
@@ -158,7 +152,7 @@ const ContactSection: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <Input
@@ -182,10 +176,14 @@ const ContactSection: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             <div>
               <Select value={formData.interesse} onValueChange={handleSelectChange}>
-                <SelectTrigger className={`h-12 bg-card border-border/50 text-foreground focus:border-primary/50 focus:ring-primary/20 ${errors.interesse ? 'border-destructive' : ''}`}>
+                <SelectTrigger
+                  className={`h-12 bg-card border-border/50 text-foreground focus:border-primary/50 focus:ring-primary/20 ${
+                    errors.interesse ? 'border-destructive' : ''
+                  }`}
+                >
                   <SelectValue placeholder="Wofür interessieren Sie sich? *" />
                 </SelectTrigger>
                 <SelectContent>
@@ -196,7 +194,7 @@ const ContactSection: React.FC = () => {
               </Select>
               {errors.interesse && <p className="text-sm text-destructive mt-1">{errors.interesse}</p>}
             </div>
-            
+
             <div>
               <Textarea
                 name="nachricht"
@@ -207,8 +205,14 @@ const ContactSection: React.FC = () => {
                 className="bg-card border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-primary/20 resize-none"
               />
             </div>
-            
-            <Button type="submit" variant="hero" size="lg" disabled={isLoading} className="w-full group">
+
+            <Button
+              type="submit"
+              variant="hero"
+              size="lg"
+              disabled={isLoading}
+              className="w-full group"
+            >
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
               ) : (
@@ -218,7 +222,6 @@ const ContactSection: React.FC = () => {
                 </>
               )}
             </Button>
-            
           </form>
         </div>
       </div>
