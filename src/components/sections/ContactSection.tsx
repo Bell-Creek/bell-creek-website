@@ -61,18 +61,24 @@ const ContactSection: React.FC = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch('/.netlify/functions/send-email', {
+      // Submit to Netlify Forms
+      const formDataEncoded = new URLSearchParams();
+      formDataEncoded.append('form-name', 'contact');
+      formDataEncoded.append('name', formData.name);
+      formDataEncoded.append('email', formData.email);
+      if (formData.telefon) formDataEncoded.append('telefon', formData.telefon);
+      if (formData.unternehmen) formDataEncoded.append('unternehmen', formData.unternehmen);
+      formDataEncoded.append('interesse', formData.interesse);
+      if (formData.nachricht) formDataEncoded.append('nachricht', formData.nachricht);
+
+      const response = await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formDataEncoded.toString(),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || 'Fehler beim Senden der Nachricht');
+        throw new Error('Fehler beim Senden der Nachricht');
       }
 
       setFormData({
@@ -97,10 +103,20 @@ const ContactSection: React.FC = () => {
 
   return (
     <section id="kontakt" className="relative py-24 overflow-hidden">
+      {/* Hidden form for Netlify Forms detection during build */}
+      <form name="contact" netlify hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="text" name="telefon" />
+        <input type="text" name="unternehmen" />
+        <input type="text" name="interesse" />
+        <textarea name="nachricht"></textarea>
+      </form>
+
       {/* Background effects */}
       <div className="absolute inset-0 mesh-gradient opacity-50" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[120px]" />
-      
+
       <div className="container px-6 relative z-10">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
