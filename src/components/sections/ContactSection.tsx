@@ -62,19 +62,26 @@ const ContactSection: React.FC = () => {
     setIsLoading(true);
     try {
       // Submit to Netlify Forms
-      const formDataEncoded = new URLSearchParams();
-      formDataEncoded.append('form-name', 'contact');
-      formDataEncoded.append('name', formData.name);
-      formDataEncoded.append('email', formData.email);
-      if (formData.telefon) formDataEncoded.append('telefon', formData.telefon);
-      if (formData.unternehmen) formDataEncoded.append('unternehmen', formData.unternehmen);
-      formDataEncoded.append('interesse', formData.interesse);
-      if (formData.nachricht) formDataEncoded.append('nachricht', formData.nachricht);
+      const encode = (data: Record<string, string>) => {
+        return Object.keys(data)
+          .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+          .join('&');
+      };
+
+      const netlifyFormData = {
+        'form-name': 'contact',
+        name: formData.name,
+        email: formData.email,
+        ...(formData.telefon && { telefon: formData.telefon }),
+        ...(formData.unternehmen && { unternehmen: formData.unternehmen }),
+        interesse: formData.interesse,
+        ...(formData.nachricht && { nachricht: formData.nachricht }),
+      };
 
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formDataEncoded.toString(),
+        body: encode(netlifyFormData),
       });
 
       if (!response.ok) {
@@ -104,7 +111,8 @@ const ContactSection: React.FC = () => {
   return (
     <section id="kontakt" className="relative py-24 overflow-hidden">
       {/* Hidden form for Netlify Forms detection during build */}
-      <form name="contact" netlify hidden>
+      <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="bot-field" />
         <input type="text" name="name" />
         <input type="email" name="email" />
         <input type="text" name="telefon" />
