@@ -29,7 +29,7 @@ const ServicesSection: React.FC = () => {
             Unsere Leistungen
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
-            Zwei Welten, <span className="text-gradient">eine Kompetenz</span>
+            Die Brücke zwischen <span className="text-gradient">Tradition</span> und <span className="text-gradient"> Tech </span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Von der klassischen Immobilienvermarktung bis zur digitalen Transformation – wir verbinden beide Welten nahtlos.
@@ -52,7 +52,7 @@ const ServicesSection: React.FC = () => {
               </h3>
               
               <p className="text-muted-foreground mb-6">
-                Fokus auf das private Geschäft und die strukturierte Vermarktung von Wohnimmobilien.
+                Wir bringen Käufer, Mieter und Eigentümer zusammen.
               </p>
               
               <ul className="space-y-4">
@@ -68,12 +68,6 @@ const ServicesSection: React.FC = () => {
                   );
                 })}
               </ul>
-              
-              <div className="mt-6 pt-6 border-t border-border/50">
-                <p className="text-sm text-muted-foreground italic">
-                  Tonalität: Zahlenverständnis, Struktur, Transaktionssicherheit.
-                </p>
-              </div>
             </div>
           </div>
           
@@ -107,12 +101,6 @@ const ServicesSection: React.FC = () => {
                   );
                 })}
               </ul>
-              
-              <div className="mt-6 pt-6 border-t border-border/50">
-                <p className="text-sm font-medium text-primary">
-                  Wir machen Ihr Unternehmen effizienter, skalierbar und zukunftssicher.
-                </p>
-              </div>
             </div>
           </div>
         </div>

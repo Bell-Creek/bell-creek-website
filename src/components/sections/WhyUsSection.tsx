@@ -4,18 +4,18 @@ import { Layers, Target, Home } from 'lucide-react';
 const differentiators = [
   {
     icon: Layers,
-    title: 'Makler + Digital',
-    description: 'Kombination aus Immobilien-Know-how, Transaktionserfahrung und Digital-Expertise.',
+    title: 'Makler',
+    description: 'Allround-Serice mit Transaktionsberatung',
   },
   {
     icon: Target,
     title: 'Boutique-Struktur',
-    description: 'Direkter Zugang zu Entscheidern, kurze Abstimmungswege, hoher Qualitätsanspruch.',
+    description: 'Kundenservice mit höchstem Qualitätsanspruch',
   },
   {
     icon: Home,
-    title: 'Fokus Wohnen & Verwaltung',
-    description: 'Spezialisierung auf Wohnimmobilien und Hausverwaltungen.',
+    title: 'Modern und Digital',
+    description: 'Prozessautomatisierung und Beratung',
   },
 ];
 
@@ -28,7 +28,7 @@ const WhyUsSection: React.FC = () => {
             Warum wir
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
-            Warum <span className="text-gradient">Bell Creek Partners?</span>
+            Warum <span className="text-gradient">Bell Creek?</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Drei klare Differenzierungsmerkmale, die uns von anderen unterscheiden.

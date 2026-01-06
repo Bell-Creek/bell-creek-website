@@ -9,7 +9,7 @@ const NeuralNetwork: React.FC = () => {
       {/* Orbiting nodes */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         {/* Center node */}
-        <div className="absolute -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full shadow-[0_0_20px_hsl(24_95%_53%_/_0.6)]" />
+        <div className="absolute -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full shadow-[0_0_20px_hsl(5_45%_42%_/_0.6)]" />
         
         {/* Orbiting elements */}
         <div className="absolute -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] animate-orbit">
@@ -22,8 +22,8 @@ const NeuralNetwork: React.FC = () => {
         
         {/* Connection lines */}
         <svg className="absolute -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] opacity-20" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="60" fill="none" stroke="hsl(24 95% 53%)" strokeWidth="0.5" strokeDasharray="4 4" />
-          <circle cx="100" cy="100" r="90" fill="none" stroke="hsl(24 95% 53%)" strokeWidth="0.5" strokeDasharray="4 4" />
+          <circle cx="100" cy="100" r="60" fill="none" stroke="hsl(5 45% 42%)" strokeWidth="0.5" strokeDasharray="4 4" />
+          <circle cx="100" cy="100" r="90" fill="none" stroke="hsl(5 45% 42%)" strokeWidth="0.5" strokeDasharray="4 4" />
         </svg>
       </div>
       

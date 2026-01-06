@@ -16,7 +16,7 @@ const AIVisualization: React.FC = () => {
         {/* Center AI core */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/60 shadow-[0_0_40px_hsl(24_95%_53%_/_0.4)] flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/60 shadow-[0_0_40px_hsl(5_45%_42%_/_0.4)] flex items-center justify-center">
               <svg
                 className="w-8 h-8 text-primary-foreground"
                 viewBox="0 0 24 24"
@@ -56,9 +56,9 @@ const AIVisualization: React.FC = () => {
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
           <defs>
             <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(24 95% 53%)" stopOpacity="0.1" />
-              <stop offset="50%" stopColor="hsl(24 95% 53%)" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="hsl(24 95% 53%)" stopOpacity="0.1" />
+              <stop offset="0%" stopColor="hsl(5 45% 42%)" stopOpacity="0.1" />
+              <stop offset="50%" stopColor="hsl(5 45% 42%)" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="hsl(5 45% 42%)" stopOpacity="0.1" />
             </linearGradient>
           </defs>
           {[0, 72, 144, 216, 288].map((rotation, i) => {

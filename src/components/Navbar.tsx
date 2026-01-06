@@ -15,10 +15,11 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-[0_0_20px_hsl(24_95%_53%_/_0.3)]">
-              <span className="text-primary-foreground font-bold text-sm">BC</span>
-            </div>
-            <span className="font-semibold text-foreground">Bell Creek Partners</span>
+            <img
+              src="/bell-creek-logo.png"
+              alt="Bell Creek Partners"
+              className="h-8 w-auto object-contain"
+            />
           </a>
           
           {/* Nav Links */}

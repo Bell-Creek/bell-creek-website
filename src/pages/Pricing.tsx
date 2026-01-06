@@ -149,7 +149,7 @@ const Pricing: React.FC = () => {
         <div className="container px-6">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-[0_0_20px_hsl(24_95%_53%_/_0.3)]">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-[0_0_20px_hsl(5_45%_42%_/_0.3)]">
                 <span className="text-primary-foreground font-bold text-sm">C</span>
               </div>
               <span className="font-semibold text-foreground">CoLinked</span>
@@ -243,7 +243,7 @@ const Pricing: React.FC = () => {
                 key={tier.name}
                 className={`relative rounded-2xl p-6 transition-all duration-300 ${
                   tier.popular
-                    ? 'bg-card border-2 border-primary shadow-[0_0_40px_-10px_hsl(24_95%_53%_/_0.3)] scale-105 z-10'
+                    ? 'bg-card border-2 border-primary shadow-[0_0_40px_-10px_hsl(5_45%_42%_/_0.3)] scale-105 z-10'
                     : 'bg-card border border-border hover:border-primary/30'
                 }`}
               >

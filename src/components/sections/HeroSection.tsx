@@ -26,30 +26,23 @@ const HeroSection: React.FC = () => {
           }}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              Exzellenz in Immobilien. Intelligenz in Prozessen.
+              Die Brücke zwischen Tradition und Tech.
             </div>
-          </div>
-          
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/50 border border-border/50 text-muted-foreground text-sm mb-8 opacity-0 animate-fade-in" style={{
-            animationDelay: '200ms',
-            animationFillMode: 'forwards'
-          }}>
-            Die Brücke zwischen Tradition und Tech.
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 opacity-0 animate-fade-in-up" style={{
             animationDelay: '300ms',
             animationFillMode: 'forwards'
           }}>
-            Wohnimmobilien vermarkten.{' '}
-            <span className="text-gradient">Geschäfte transformieren.</span>
+            Exzellenz in Immobilien.{' '}
+            <span className="text-gradient">Intelligenz in Prozessen.</span>
           </h1>
           
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 opacity-0 animate-fade-in-up" style={{
             animationDelay: '500ms',
             animationFillMode: 'forwards'
           }}>
-            Neben der professionellen Vermarktung von Wohnimmobilien bieten wir Digitalisierungs- und Beratungsdienstleistungen für Bestandshalter und Hausverwaltungen an.
+            Neben der professionellen Vermarktung von Immobilien bieten wir Digitalisierungs- und Beratungsdienstleistungen für Bestandshalter und Hausverwaltungen an.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up" style={{

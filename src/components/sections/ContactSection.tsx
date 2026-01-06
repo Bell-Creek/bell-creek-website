@@ -60,20 +60,39 @@ const ContactSection: React.FC = () => {
     }
 
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsLoading(false);
-    setFormData({
-      name: '',
-      unternehmen: '',
-      email: '',
-      telefon: '',
-      interesse: '',
-      nachricht: '',
-    });
-    toast.success('Nachricht gesendet!', {
-      description: 'Wir melden uns in der Regel innerhalb von 24 Stunden bei Ihnen.',
-    });
+    try {
+      const response = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Fehler beim Senden der Nachricht');
+      }
+
+      setFormData({
+        name: '',
+        unternehmen: '',
+        email: '',
+        telefon: '',
+        interesse: '',
+        nachricht: '',
+      });
+      toast.success('Nachricht gesendet!', {
+        description: 'Wir melden uns in der Regel innerhalb von 24 Stunden bei Ihnen.',
+      });
+    } catch (error) {
+      toast.error('Fehler beim Senden', {
+        description: error instanceof Error ? error.message : 'Bitte versuchen Sie es später erneut.',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -89,12 +108,9 @@ const ContactSection: React.FC = () => {
               Kontakt
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">
-              Bereit für <span className="text-gradient">Veränderung?</span>
+              Jetzt Ihr <span className="text-gradient">Projekt</span> besprechen
             </h2>
-            <p className="text-muted-foreground">
-              Ob Sie Ihre Wohnimmobilie professionell vermarkten oder Ihr Unternehmen digital weiterentwickeln möchten – wir sind Ihr Partner auf Augenhöhe.
-            </p>
-          </div>
+                      </div>
           
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid sm:grid-cols-2 gap-4">
@@ -151,7 +167,7 @@ const ContactSection: React.FC = () => {
                 <SelectContent>
                   <SelectItem value="immobilientransaktion">Immobilientransaktion</SelectItem>
                   <SelectItem value="digitalisierung">Digitalisierung & Automatisierung</SelectItem>
-                  <SelectItem value="beides">Beides</SelectItem>
+                  <SelectItem value="beides">Sonstiges</SelectItem>
                 </SelectContent>
               </Select>
               {errors.interesse && <p className="text-sm text-destructive mt-1">{errors.interesse}</p>}
@@ -179,10 +195,6 @@ const ContactSection: React.FC = () => {
               )}
             </Button>
             
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <Clock className="w-4 h-4" />
-              <span>Wir melden uns in der Regel innerhalb von 24 Stunden.</span>
-            </div>
           </form>
         </div>
       </div>
