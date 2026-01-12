@@ -48,9 +48,18 @@ const Navbar: React.FC = () => {
           <Button 
             variant="hero" 
             size="sm"
+            className="hidden md:inline-flex"
             onClick={() => scrollToSection('kontakt')}
           >
             Jetzt Projekt besprechen
+          </Button>
+          <Button 
+            variant="ghost" 
+            size="sm"
+            className="md:hidden text-xs px-2 h-8 text-primary hover:text-primary"
+            onClick={() => scrollToSection('kontakt')}
+          >
+            Kontakt
           </Button>
         </div>
       </div>
