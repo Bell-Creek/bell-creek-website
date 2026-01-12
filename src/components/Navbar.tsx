@@ -12,13 +12,13 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="container px-6">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-center md:justify-between h-16">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
             <img
               src="/bell-creek-logo.png"
               alt="Bell Creek Partners"
-              className="h-8 w-auto object-contain"
+              className="h-5 md:h-8 w-auto object-contain"
             />
           </a>
           
@@ -52,14 +52,6 @@ const Navbar: React.FC = () => {
             onClick={() => scrollToSection('kontakt')}
           >
             Jetzt Projekt besprechen
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="sm"
-            className="md:hidden text-xs px-2 h-8 text-primary hover:text-primary"
-            onClick={() => scrollToSection('kontakt')}
-          >
-            Kontakt
           </Button>
         </div>
       </div>
