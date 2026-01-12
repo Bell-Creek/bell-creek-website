@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
             <img
               src="/bell-creek-logo.png"
               alt="Bell Creek Partners"
-              className="h-5 md:h-8 w-auto object-contain"
+              className="h-6 md:h-8 w-auto object-contain"
             />
           </a>
           
